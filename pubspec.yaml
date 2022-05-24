@@ -1,6 +1,6 @@
 name: app_costura
 description: App para ajudar você costureira a guardar as medias de suas clientes e realizar orçamento de uma maneira fácil.
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
