@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final client = Client(
+    id: 1,
     name: "client",
     phone: "(41)999999999",
     bust: 1,
@@ -17,7 +18,11 @@ void main() {
   );
 
   const clientName = "Test Client";
-  final clientDefaultValue = Client(name: clientName);
+  final clientDefaultValue = Client(id: 2, name: clientName);
+
+  test('Client should have ID property', () {
+    expect(client.id.runtimeType, int);
+  });
 
   test('Client should have NAME property', () {
     expect(client.name.runtimeType, String);

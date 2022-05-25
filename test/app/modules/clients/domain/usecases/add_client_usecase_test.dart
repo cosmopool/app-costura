@@ -8,7 +8,7 @@ void main() async {
   final repository = ClientRepositoryMock();
   final usecase = AddClientUsecase(repository);
   const clientName = "Test Client";
-  final client = Client(name: clientName);
+  final client = Client(id: 1, name: clientName);
 
   test('Should call and pass client to repository add method', () async {
     await usecase(client);

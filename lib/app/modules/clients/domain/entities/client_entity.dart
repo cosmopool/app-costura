@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Client extends Equatable {
+  final int _id;
   String name;
   String phone;
   int bust;
@@ -14,6 +15,7 @@ class Client extends Equatable {
   int pants;
 
   Client({
+    required id,
     required this.name,
     this.phone = "",
     this.bust = 0,
@@ -25,10 +27,13 @@ class Client extends Equatable {
     this.inseam = 0,
     this.biceps = 0,
     this.pants = 0,
-  });
+  }) : _id = id;
+
+  int get id => _id;
 
   @override
   List<Object?> get props => [
+        _id,
         name,
         phone,
         bust,
