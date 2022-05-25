@@ -3,4 +3,5 @@ import 'package:app_costura/app/modules/clients/domain/entities/client_entity.da
 abstract class IClientRepository {
   Future<bool> add(Client client);
   Future<bool> delete(Client client);
+  Future<bool> update(Client client);
 }
