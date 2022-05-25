@@ -4,6 +4,7 @@ import 'package:app_costura/app/modules/clients/domain/usecases/repositories/i_c
 class ClientRepositoryMock implements IClientRepository {
   List clientList = []; 
   int addMethodCalls = 0;
+  int deleteMethodCalls = 0;
 
   @override
   Future<bool> add(Client client) async {
@@ -13,5 +14,12 @@ class ClientRepositoryMock implements IClientRepository {
     clientList.add(client);
 
     return clientList.length == lenghtBeforeAdd + 1;
+  }
+
+  @override
+  Future<bool> delete(Client client) async {
+    deleteMethodCalls += 1;
+
+    return clientList.remove(client);
   }
 }
