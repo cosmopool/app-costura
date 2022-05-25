@@ -2,10 +2,11 @@ import 'package:app_costura/app/modules/clients/domain/entities/client_entity.da
 import 'package:app_costura/app/modules/clients/domain/usecases/repositories/i_client_repository.dart';
 
 class ClientRepositoryMock implements IClientRepository {
-  List clientList = [];
+  List<Client> clientList = [];
   int addMethodCalls = 0;
   int deleteMethodCalls = 0;
   int updateMethodCalls = 0;
+  int fetchMethodCalls = 0;
 
   @override
   Future<bool> add(Client client) async {
@@ -35,5 +36,12 @@ class ClientRepositoryMock implements IClientRepository {
     } else {
       return false;
     }
+  }
+
+  @override
+  Future<List<Client>> fetch(Client client) async {
+    fetchMethodCalls += 1;
+
+    return clientList;
   }
 }

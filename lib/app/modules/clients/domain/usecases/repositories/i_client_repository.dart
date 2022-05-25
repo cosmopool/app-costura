@@ -4,4 +4,5 @@ abstract class IClientRepository {
   Future<bool> add(Client client);
   Future<bool> delete(Client client);
   Future<bool> update(Client client);
+  Future<List<Client>> fetch(Client client);
 }
