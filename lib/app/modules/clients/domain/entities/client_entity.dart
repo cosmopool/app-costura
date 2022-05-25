@@ -1,4 +1,6 @@
-class Client {
+import 'package:equatable/equatable.dart';
+
+class Client extends Equatable {
   String name;
   String phone;
   int bust;
@@ -24,4 +26,19 @@ class Client {
     this.biceps = 0,
     this.pants = 0,
   });
+
+  @override
+  List<Object?> get props => [
+        name,
+        phone,
+        bust,
+        bustHeight,
+        waist,
+        hip,
+        shoulderWidth,
+        sleeveLenght,
+        inseam,
+        biceps,
+        pants
+      ];
 }
