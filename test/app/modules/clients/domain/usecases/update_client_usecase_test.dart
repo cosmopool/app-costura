@@ -26,7 +26,7 @@ void main() async {
     expect(response, true);
   });
 
-  test('Should return false when trying to remove a non existent client', () async {
+  test('Should return false when trying to update a non existent client', () async {
     repository.delete(client);
     final response = await usecase(client);
     expect(response, false);
