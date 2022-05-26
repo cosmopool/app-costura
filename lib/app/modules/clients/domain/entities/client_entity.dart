@@ -1,17 +1,43 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
+part 'client_entity.g.dart';
+
+@HiveType(typeId: 1)
 class Client extends Equatable {
   final int _id;
+
+  @HiveField(1)
   String name;
+
+  @HiveField(2, defaultValue: "")
   String phone;
+  
+  @HiveField(3, defaultValue: 0)
   int bust;
+
+  @HiveField(4, defaultValue: 0)
   int bustHeight;
+
+  @HiveField(5, defaultValue: 0)
   int waist;
+
+  @HiveField(6, defaultValue: 0)
   int hip;
+
+  @HiveField(7, defaultValue: 0)
   int shoulderWidth;
+
+  @HiveField(8, defaultValue: 0)
   int sleeveLenght;
+
+  @HiveField(9, defaultValue: 0)
   int inseam;
+
+  @HiveField(10, defaultValue: 0)
   int biceps;
+
+  @HiveField(11, defaultValue: 0)
   int pants;
 
   Client({
@@ -29,6 +55,7 @@ class Client extends Equatable {
     this.pants = 0,
   }) : _id = id;
 
+  @HiveField(0)
   int get id => _id;
 
   @override
