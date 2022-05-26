@@ -5,5 +5,5 @@ class FetchClientsUsecase {
   final IClientRepository repository;
   FetchClientsUsecase(this.repository);
 
-  Future<List<Client>> call(Client client) async => await repository.fetch(client);
+  Future<List<Client>> call() async => await repository.fetchAll();
 }

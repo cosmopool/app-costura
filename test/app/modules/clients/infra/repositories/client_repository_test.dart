@@ -60,18 +60,18 @@ void main() async {
   // ------------------------------------------------------ FETCH METHOD TESTS
 
   test('Should call and pass client to repository fetch method', () async {
-    await repo.fetch(client);
+    await repo.fetchAll();
     expect(cache.fetchMethodCalls, 1);
   });
 
   test('Should return a list of client as response', () async {
-    final response = await repo.fetch(client);
+    final response = await repo.fetchAll();
     expect(response.runtimeType, List<Client>);
   });
 
   test('Should return list with one client on fetch', () async {
     cache.add(client);
-    final response = await repo.fetch(client);
+    final response = await repo.fetchAll();
     expect(response, [client]);
   });
 

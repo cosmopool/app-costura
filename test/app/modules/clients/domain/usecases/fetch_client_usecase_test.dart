@@ -11,18 +11,18 @@ void main() async {
   final client = Client(id: 1, name: clientName);
 
   test('Should call and pass client to repository fetch method', () async {
-    await usecase(client);
+    await usecase();
     expect(repository.fetchMethodCalls, 1);
   });
 
   test('Should return a list of client as response', () async {
-    final response = await usecase(client);
+    final response = await usecase();
     expect(response.runtimeType, List<Client>);
   });
 
   test('Should return list with one client on fetch', () async {
     repository.add(client);
-    final response = await usecase(client);
+    final response = await usecase();
     expect(response, [client]);
   });
 }

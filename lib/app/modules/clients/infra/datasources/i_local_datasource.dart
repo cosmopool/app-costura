@@ -4,5 +4,5 @@ abstract class ILocalDatasource {
   Future<bool> add(Client client);
   Future<bool> delete(Client client);
   Future<bool> update(Client client);
-  Future<List<Client>> fetch(Client client);
+  Future<List<Client>> fetchAll();
 }

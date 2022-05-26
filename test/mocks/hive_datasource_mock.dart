@@ -39,7 +39,7 @@ class HiveDatasourceMock implements ILocalDatasource {
   }
 
   @override
-  Future<List<Client>> fetch(Client client) async {
+  Future<List<Client>> fetchAll() async {
     fetchMethodCalls += 1;
 
     return clientList;

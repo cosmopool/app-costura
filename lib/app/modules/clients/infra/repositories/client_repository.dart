@@ -17,8 +17,8 @@ class ClientRepository implements IClientRepository {
   }
 
   @override
-  Future<List<Client>> fetch(Client client) async {
-    return await cache.fetch(client);
+  Future<List<Client>> fetchAll() async {
+    return await cache.fetchAll();
   }
 
   @override
