@@ -11,3 +11,11 @@ class CouldNotFetchClients extends Failure {
   @override
   List<Object?> get props => [];
 }
+
+class CouldNotAddClient extends Failure {
+  @override
+  String get message => "Error trying to add client";
+
+  @override
+  List<Object?> get props => [];
+}
