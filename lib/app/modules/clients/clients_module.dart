@@ -4,6 +4,7 @@ import 'package:app_costura/app/modules/clients/domain/usecases/delete_client_us
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/infra/repositories/client_repository.dart';
+import 'package:app_costura/app/modules/clients/ui/pages/client_search_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 
