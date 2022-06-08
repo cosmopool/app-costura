@@ -39,13 +39,13 @@ class ClientSearchPage extends StatelessWidget {
             ),
             LayoutBuilder(
               builder: (_, constraints) => Container(
-                // TODO: make needle background image smaller
                 padding: EdgeInsets.symmetric(
                   vertical: height * 0.05,
                   horizontal: width * 0.1,
                 ),
                 height: height,
                 width: constraints.maxWidth,
+                // TODO: make needle background image smaller
                 decoration: BoxDecoration(
                   image: const DecorationImage(
                     image: AssetImage('assets/images/needle.png'),
@@ -68,11 +68,16 @@ class ClientSearchPage extends StatelessWidget {
                       /* child: Divider(color: colors.secondaryContainer), */
                     ),
                     itemCount: store.state.clientsFiltered.length,
-                    itemBuilder: (_, index) => ClientContactWidget(
-                      client: store.state.clientsFiltered[index],
-                      // TODO: implement client contact screen
-                      onTap: () => print("Modular.to.pushNamed('/client/${store.state.clientsFiltered[index].id}')"),
-                    ),
+                    itemBuilder: (_, index) {
+                      final client = store.state.clientsFiltered[index];
+
+                      return ClientContactWidget(
+                        client: client,
+                        // TODO: implement client contact screen
+                        onTap: () => print(
+                            "Modular.to.pushNamed('/client/${client.id}')"),
+                      );
+                    },
                   ),
                 ),
               ),
