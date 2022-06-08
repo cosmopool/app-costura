@@ -40,6 +40,9 @@ class Client extends Equatable {
   @HiveField(11, defaultValue: 0)
   int pants;
 
+  @HiveField(12, defaultValue: 0)
+  int torso;
+
   Client({
     required id,
     required this.name,
@@ -53,6 +56,7 @@ class Client extends Equatable {
     this.inseam = 0,
     this.biceps = 0,
     this.pants = 0,
+    this.torso = 0,
   }) : _id = id;
 
   @HiveField(0)
@@ -71,6 +75,7 @@ class Client extends Equatable {
         sleeveLenght,
         inseam,
         biceps,
-        pants
+        pants,
+        torso,
       ];
 }

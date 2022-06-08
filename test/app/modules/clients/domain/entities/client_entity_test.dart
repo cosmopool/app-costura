@@ -68,6 +68,10 @@ void main() {
     expect(client.pants.runtimeType, int);
   });
 
+  test('Client should have TORSO LENGHT property', () {
+    expect(client.torso.runtimeType, int);
+  });
+
   test('PHONE property should have default value = ""', () {
     expect(clientDefaultValue.phone, "");
   });
@@ -106,5 +110,9 @@ void main() {
 
   test('PANTS property should have default value = 0', () {
     expect(clientDefaultValue.pants, 0);
+  });
+
+  test('TORSO property should have default value = 0', () {
+    expect(clientDefaultValue.torso, 0);
   });
 }
