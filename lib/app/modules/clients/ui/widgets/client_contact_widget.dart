@@ -18,7 +18,7 @@ class ClientContactWidget extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: onTap(),
+      onTap: () => onTap(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
