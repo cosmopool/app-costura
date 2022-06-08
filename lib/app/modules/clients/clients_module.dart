@@ -5,6 +5,7 @@ import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_us
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/infra/repositories/client_repository.dart';
 import 'package:app_costura/app/modules/clients/ui/pages/client_search_page.dart';
+import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 
@@ -13,7 +14,7 @@ class ClientsModule extends Module {
   List<Bind> get binds => [
         // Here it goes all dependency injection
         // datasources
-        Bind.lazySingleton((i) => HiveDatasource(Hive.box("agenda"))),
+        Bind.lazySingleton((i) => HiveDatasource(Hive.box("clients"))),
         // repositories
         Bind.lazySingleton((i) => ClientRepository(i())),
         // usecases
@@ -22,6 +23,7 @@ class ClientsModule extends Module {
         Bind.lazySingleton((i) => FetchClientsUsecase(i())),
         Bind.lazySingleton((i) => UpdateClientUsecase(i())),
         // stores
+        Bind.lazySingleton((i) => ClientStore(i(), i())),
       ];
 
   @override

@@ -23,7 +23,8 @@ class ClientStore extends NotifierStore<Failure, ClientViewModel> {
   Future<void> fetchAll() async {
     try {
       setLoading(true);
-      final clientList = await _fetchAllUsecase();
+      /* final clientList = await _fetchAllUsecase(); */
+      final clientList = clientsList;
       update(state.copyWith(clients: clientList));
     } catch (e) {
       setError(CouldNotFetchClients());
@@ -51,3 +52,37 @@ class ClientStore extends NotifierStore<Failure, ClientViewModel> {
     }
   }
 }
+
+//------------------------------------------
+
+final client1 = Client(id: 1, name: "Tatiana Goncalves");
+final client2 = Client(id: 2, name: "Alessandra Pastoral Augustina");
+final client3 = Client(id: 3, name: "Valeria Pereira");
+final client4 = Client(id: 4, name: "Micaela Camile Biancato");
+final client5 = Client(id: 5, name: "Mariana Valaski");
+final client6 = Client(id: 6, name: "Luzia dos Santos");
+final client7 = Client(id: 7, name: "Lucia Amaral");
+final client8 = Client(id: 8, name: "Juliana Hollanda");
+final client9 = Client(id: 9, name: "Ana Julia Delphino");
+final client10 = Client(id: 10, name: "Alexia Pereira");
+final client11 = Client(id: 11, name: "Agusta Grustrakle");
+final client12 = Client(id: 11, name: "Ivanete Lopes dos Santos");
+final client13 = Client(id: 11, name: "Ivete Dos Santos");
+final client14 = Client(id: 11, name: "Elizabete Lopes");
+
+final clientsList = [
+  client1,
+  client2,
+  client3,
+  client4,
+  client5,
+  client6,
+  client7,
+  client8,
+  client9,
+  client10,
+  client11,
+  client12,
+  client13,
+  client14,
+];
