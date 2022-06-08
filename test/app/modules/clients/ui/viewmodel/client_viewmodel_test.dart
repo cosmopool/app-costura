@@ -39,6 +39,11 @@ void main() async {
     expect(newVm.clients, [client]);
   });
 
+  test('Should return a client when no filter is applied', () async {
+    final vm = ClientViewModel(clients: listOfClients);
+    expect(vm.clientsFiltered.length, listOfClients.length);
+  });
+
   test('Should return a client list with filtered clients by "ana" in their name', () async {
     final vm = ClientViewModel(clients: listOfClients);
     final newVm = vm.copyWith(filter: "ana");
