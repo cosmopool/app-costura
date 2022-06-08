@@ -4,6 +4,7 @@ import 'package:app_costura/app/modules/clients/domain/usecases/delete_client_us
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/infra/repositories/client_repository.dart';
+import 'package:app_costura/app/modules/clients/ui/pages/client_info_page.dart';
 import 'package:app_costura/app/modules/clients/ui/pages/client_search_page.dart';
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -14,24 +15,21 @@ class ClientsModule extends Module {
   List<Bind> get binds => [
         // Here it goes all dependency injection
         // datasources
-        Bind.lazySingleton((i) => HiveDatasource(Hive.box("clients"))),
+        Bind.lazySingleton((i) => HiveDatasource(Hive.box("clients")), export: true),
         // repositories
-        Bind.lazySingleton((i) => ClientRepository(i())),
+        Bind.lazySingleton((i) => ClientRepository(i()), export: true),
         // usecases
-        Bind.lazySingleton((i) => AddClientUsecase(i())),
-        Bind.lazySingleton((i) => DeleteClientUsecase(i())),
-        Bind.lazySingleton((i) => FetchClientsUsecase(i())),
-        Bind.lazySingleton((i) => UpdateClientUsecase(i())),
+        Bind.lazySingleton((i) => AddClientUsecase(i()), export: true),
+        Bind.lazySingleton((i) => DeleteClientUsecase(i()), export: true),
+        Bind.lazySingleton((i) => FetchClientsUsecase(i()), export: true),
+        Bind.lazySingleton((i) => UpdateClientUsecase(i()), export: true),
         // stores
-        Bind.lazySingleton((i) => ClientStore(i(), i())),
+        Bind.lazySingleton((i) => ClientStore(i(), i()), export: true),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (context, args) => const ClientSearchPage(), children: [
-        /* ChildRoute('/client/info', child: (context, args) => const ClientInfoPage()), */
-        /* ChildRoute('/client/info/edit', child: (context, args) => const ClientEditPage(), transition: TransitionType.rightToLeftWithFade), */
-        ],
-        ),
+        ChildRoute('/', child: (context, args) => const ClientSearchPage()),
+        ChildRoute('/info', child: (context, args) => ClientInfoPage(client: args.data)),
       ];
 }

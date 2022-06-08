@@ -73,9 +73,8 @@ class ClientSearchPage extends StatelessWidget {
 
                       return ClientContactWidget(
                         client: client,
-                        // TODO: implement client contact screen
-                        onTap: () => print(
-                            "Modular.to.pushNamed('/client/${client.id}')"),
+                        onTap: () =>
+                            Modular.to.pushNamed('./info', arguments: client),
                       );
                     },
                   ),

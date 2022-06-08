@@ -35,7 +35,7 @@ class HomeMainPage extends StatelessWidget {
                   textStyle: textStyle.headlineMedium!,
                   iconAsset: 'assets/images/contacts.png',
                   iconColor: colors.primary,
-                  onTap: () => Modular.to.pushNamed("clients"),
+                  onTap: () => Modular.to.pushNamed("/clients/"),
                 ),
                 MainButton(
                   title: "Orçamento",
