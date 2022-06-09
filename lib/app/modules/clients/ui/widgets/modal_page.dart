@@ -1,7 +1,5 @@
 import 'package:app_costura/app/modules/clients/ui/widgets/modal_title_bar.dart';
-import 'package:app_costura/app/modules/clients/ui/widgets/text_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class ModalPage extends StatelessWidget {
   final List<Widget> children;
@@ -80,34 +78,6 @@ class ModalPage extends StatelessWidget {
                       left: 10,
                       child: ModalTitleBar(title: title),
                     ),
-                    /* Positioned( */
-                    /*   top: 10, */
-                    /*   left: 10, */
-                    /*   child: IconButton( */
-                    /*     color: colors.secondaryContainer, */
-                    /*     icon: const Icon(Icons.arrow_back), */
-                    /*     onPressed: () => Modular.to.maybePop(), */
-                    /*   ), */
-                    /* ), */
-                    /* Positioned( */
-                    /*   top: 10, */
-                    /*   left: 60, */
-                    /*   child: Text( */
-                    /*     title, */
-                    /*     style: textTheme.headlineMedium?.copyWith( */
-                    /*       color: colors.secondaryContainer, */
-                    /*     ), */
-                    /*   ), */
-                    /* ), */
-                    /* Positioned( */
-                    /*   top: 10, */
-                    /*   right: 10, */
-                    /*   child: IconButton( */
-                    /*     color: colors.secondaryContainer, */
-                    /*     icon: const Icon(Icons.edit), */
-                    /*     onPressed: () => print('go back pls'), */
-                    /*   ), */
-                    /* ), */
                   ],
                 ),
               ]),
