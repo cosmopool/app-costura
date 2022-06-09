@@ -19,7 +19,6 @@ class ClientSearchPage extends StatelessWidget {
       backgroundColor: colors.secondaryContainer,
       floatingActionButton: FloatingActionButton.large(
         child: const Icon(Icons.add),
-        // TODO: implement client add screen
         onPressed: () => Modular.to.pushNamed('./add'),
       ),
       body: SafeArea(
