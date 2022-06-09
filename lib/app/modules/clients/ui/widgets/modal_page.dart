@@ -11,6 +11,8 @@ class ModalPage extends StatelessWidget {
   final double? imageWidth;
   final double? imageHeight;
   final Color? backgroundColor;
+  final Color? iconsColor;
+  final IconButton? trailingIcon;
   final bool showMenu;
 
   const ModalPage({
@@ -24,6 +26,8 @@ class ModalPage extends StatelessWidget {
     this.imageWidth,
     this.imageHeight,
     this.backgroundColor,
+    this.iconsColor,
+    this.trailingIcon,
     this.showMenu = false,
   }) : super(key: key);
 
@@ -77,7 +81,11 @@ class ModalPage extends StatelessWidget {
                     Positioned(
                       top: 10,
                       left: 10,
-                      child: ModalTitleBar(title: title),
+                      child: ModalTitleBar(
+                        title: title,
+                        iconsColor: iconsColor,
+                        trailingIcon: trailingIcon,
+                      ),
                     ),
                   ],
                 ),

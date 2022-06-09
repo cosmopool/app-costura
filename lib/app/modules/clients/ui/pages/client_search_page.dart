@@ -20,7 +20,7 @@ class ClientSearchPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.large(
         child: const Icon(Icons.add),
         // TODO: implement client add screen
-        onPressed: () => print("Modular.to.pushNamed('/client/add')"),
+        onPressed: () => Modular.to.pushNamed('./add'),
       ),
       body: SafeArea(
         child: Column(
