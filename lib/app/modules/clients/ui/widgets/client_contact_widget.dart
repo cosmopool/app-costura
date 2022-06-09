@@ -18,6 +18,7 @@ class ClientContactWidget extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
+      // TODO: make sound when tapped like other buttons
       onTap: () => onTap(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
