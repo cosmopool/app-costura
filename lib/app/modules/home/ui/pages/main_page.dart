@@ -11,6 +11,7 @@ class HomeMainPage extends StatelessWidget {
     final textStyle = Theme.of(context).textTheme;
 
     return Scaffold(
+      backgroundColor: colors.secondaryContainer,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (_, constraints) {
