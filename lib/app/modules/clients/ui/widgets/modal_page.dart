@@ -10,6 +10,7 @@ class ModalPage extends StatelessWidget {
   final double? imagePositionRight;
   final double? imageWidth;
   final double? imageHeight;
+  final Color? backgroundColor;
   final bool showMenu;
 
   const ModalPage({
@@ -22,6 +23,7 @@ class ModalPage extends StatelessWidget {
     this.imagePositionRight,
     this.imageWidth,
     this.imageHeight,
+    this.backgroundColor,
     this.showMenu = false,
   }) : super(key: key);
 
@@ -30,7 +32,6 @@ class ModalPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final colors = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
 
     return SafeArea(
       child: Column(
@@ -52,7 +53,7 @@ class ModalPage extends StatelessWidget {
                       height: constraints.maxHeight,
                       width: constraints.maxWidth,
                       decoration: BoxDecoration(
-                        color: colors.primary,
+                        color: backgroundColor ?? colors.primary,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40),
