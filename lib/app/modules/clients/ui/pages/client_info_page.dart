@@ -11,19 +11,34 @@ class ClientInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
       backgroundColor: colors.secondaryContainer,
-      body: ModalPage(
-        title: client.name,
-        assetImage: const AssetImage('assets/images/mannequin.png'),
-        imagePositionLeft: width / 2.2,
-        children: [
-          BodyMeasurement(client: client),
-          const SizedBox(height: 100),
-          ClientContactInfo(client: client),
-        ],
+      body: SafeArea(
+        child: ModalPage(
+          title: client.name,
+          assetImage: const AssetImage('assets/images/mannequin.png'),
+          imagePositionLeft: width / 2.2,
+          imageHeight: height * 0.8,
+          imagePositionTop: (height * 0.2) / 2,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: ListView(
+                  children: [
+                    // TODO: fix text for low dpi devices
+                    BodyMeasurement(client: client),
+                    const SizedBox(height: 60),
+                    ClientContactInfo(client: client),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
