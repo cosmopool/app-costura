@@ -1,5 +1,6 @@
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
 import 'package:app_costura/app/modules/clients/ui/widgets/client_contact_widget.dart';
+import 'package:app_costura/app/modules/clients/ui/widgets/modal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -37,49 +38,42 @@ class ClientSearchPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: LayoutBuilder(
-                builder: (_, constraints) => Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: height * 0.05,
-                    horizontal: width * 0.1,
-                  ),
-                  height: constraints.maxHeight,
-                  width: constraints.maxWidth,
-                  // TODO: make needle background image smaller
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/needle.png'),
-                      fit: BoxFit.scaleDown,
-                    ),
-                    color: colors.primary,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
-                    ),
-                  ),
-                  child: ScopedBuilder(
-                    store: store,
-                    // TODO: implement error widget or screen
-                    onError: (_, error) => Text("$error"),
-                    onLoading: (_) => const CircularProgressIndicator(),
-                    onState: (_, state) => ListView.separated(
-                      separatorBuilder: (_, __) => SizedBox(
-                        height: height * 0.05,
-                        /* child: Divider(color: colors.secondaryContainer), */
-                      ),
-                      itemCount: store.state.clientsFiltered.length,
-                      itemBuilder: (_, index) {
-                        final client = store.state.clientsFiltered[index];
+              child: ModalPage(
+                title: 'Clientes',
+                showMenu: false,
+                assetImage: const AssetImage('assets/images/needle.png'),
+                imageWidth: width * 0.3,
+                imagePositionTop: 50,
+                imagePositionRight: 0,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 40, right: 40, top: 40),
+                      child: ScopedBuilder(
+                        store: store,
+                        // TODO: implement error widget or screen
+                        onError: (_, error) => Text("$error"),
+                        onLoading: (_) => const CircularProgressIndicator(),
+                        onState: (_, state) => ListView.separated(
+                          separatorBuilder: (_, __) => SizedBox(
+                            height: height * 0.05,
+                          ),
+                          itemCount: store.state.clientsFiltered.length,
+                          itemBuilder: (_, index) {
+                            final client = store.state.clientsFiltered[index];
 
-                        return ClientContactWidget(
-                          client: client,
-                          onTap: () =>
-                              Modular.to.pushNamed('./info', arguments: client),
-                        );
-                      },
+                            return ClientContactWidget(
+                              client: client,
+                              onTap: () => Modular.to
+                                  .pushNamed('./info', arguments: client),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ],
