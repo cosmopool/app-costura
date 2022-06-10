@@ -18,8 +18,14 @@ class HiveDatasource implements ILocalDatasource {
 
   @override
   Future<bool> add(Client client) async {
-    await box.put(client.id, client);
-    return _compareClient(client.id, client);
+    late Client finalClient;
+
+    (client.id == -1)
+        ? finalClient = client.copyWith(id: box.keys.length + 1)
+        : finalClient = client;
+
+    await box.put(finalClient.id, finalClient);
+    return _compareClient(finalClient.id, finalClient);
   }
 
   /// Deletes a client from a given [client.id]

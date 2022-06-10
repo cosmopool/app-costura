@@ -37,6 +37,30 @@ void main() async {
     expect(box.get(1, defaultValue: null), client);
   });
 
+  test('Should save a client with negative id', () async {
+    // arrange
+    final newClient = Client(id: -1, name: "asdf");
+    final keysBefore = box.keys.length;
+    // act
+    await cache.add(newClient);
+    // assert
+    expect(box.keys.length, keysBefore + 1);
+  });
+
+  test('Should get a new id if client.id is -1', () async {
+    // arrange
+    const name = "Negative id client";
+    final newClient = Client(id: -1, name: name);
+    await cache.add(Client(id: 1, name: "asdf"));
+    await cache.add(Client(id: 2, name: "sdfa"));
+    await cache.add(Client(id: 3, name: "glfz"));
+    // act
+    await cache.add(newClient);
+    // assert
+    final finalClient = box.get(4);
+    expect(finalClient, Client(id: 4, name: name));
+  });
+
   // ------------------------------------------------------ DELETE METHOD TESTS
 
   test('Should return bool when called add method', () async {
@@ -76,7 +100,8 @@ void main() async {
     expect(response, true);
   });
 
-  test('Should return false when trying to update a non existent client', () async {
+  test('Should return false when trying to update a non existent client',
+      () async {
     cache.delete(client);
     final response = await cache.update(client);
     expect(response, false);
