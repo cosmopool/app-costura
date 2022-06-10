@@ -1,6 +1,7 @@
 import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/add_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
+import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
 import 'package:app_costura/app/modules/clients/ui/viewmodel/client_viewmodel.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,15 +13,18 @@ class MockFetchClientsUsecase extends Mock implements FetchClientsUsecase {}
 
 class MockAddClientsUsecase extends Mock implements AddClientUsecase {}
 
+class MockUpdateClientsUsecase extends Mock implements UpdateClientUsecase {}
+
 void main() async {
   const clientName = "Test Client";
   final client = Client(id: 1, name: clientName);
   final fetchUsecase = MockFetchClientsUsecase();
   final addUsecase = MockAddClientsUsecase();
+  final updateUsecase = MockUpdateClientsUsecase();
   late ClientStore clientStore;
 
   setUp(() async {
-    clientStore = ClientStore(fetchUsecase, addUsecase);
+    clientStore = ClientStore(fetchUsecase, addUsecase, updateUsecase);
     registerFallbackValue(Client(id: 66, name: "Stub"));
   });
 
@@ -42,7 +46,8 @@ void main() async {
     await clientStore.fetchAll();
     // act
     clientStore.filterClients("ai");
-    expect(clientStore.state, ClientViewModel(clients: listOfClients, filter: "ai"));
+    expect(clientStore.state,
+        ClientViewModel(clients: listOfClients, filter: "ai"));
   });
 
   test('Should add a new client to clientList', () async {

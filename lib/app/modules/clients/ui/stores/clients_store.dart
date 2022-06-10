@@ -1,6 +1,7 @@
 import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/add_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
+import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/ui/viewmodel/client_viewmodel.dart';
 import 'package:app_costura/app/modules/core/errors/failures.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -8,10 +9,12 @@ import 'package:flutter_triple/flutter_triple.dart';
 class ClientStore extends NotifierStore<Failure, ClientViewModel> {
   final FetchClientsUsecase _fetchAllUsecase;
   final AddClientUsecase _addUsecase;
+  final UpdateClientUsecase _updateUsecase;
 
   ClientStore(
     this._fetchAllUsecase,
     this._addUsecase,
+    this._updateUsecase,
   ) : super(ClientViewModel());
 
   /// Filter the client list by [clientName]
@@ -47,6 +50,24 @@ class ClientStore extends NotifierStore<Failure, ClientViewModel> {
       }
     } catch (e) {
       setError(CouldNotAddClient());
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /// Edit a [client] properties
+  Future<void> edit(Client client) async {
+    try {
+      setLoading(true);
+      final response = await _updateUsecase(client);
+      if (response == true) {
+        final clientList = await _fetchAllUsecase();
+        update(state.copyWith(clients: clientList));
+      } else {
+        setError(CouldNotEditClient());
+      }
+    } catch (e) {
+      setError(CouldNotEditClient());
     } finally {
       setLoading(false);
     }
