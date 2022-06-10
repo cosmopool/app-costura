@@ -1,4 +1,5 @@
 import 'package:app_costura/app/app_module.dart';
+import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -7,6 +8,7 @@ import 'package:logging/logging.dart';
 
 void main() async {
   await Hive.initFlutter();
+  Hive.registerAdapter(ClientAdapter());
   await Hive.openBox("settings");
   await Hive.openBox("clients");
   Logger.root.level = Level.ALL;
