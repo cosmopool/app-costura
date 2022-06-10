@@ -25,7 +25,7 @@ class ClientsModule extends Module {
         Bind.lazySingleton((i) => FetchClientsUsecase(i()), export: true),
         Bind.lazySingleton((i) => UpdateClientUsecase(i()), export: true),
         // stores
-        Bind.lazySingleton((i) => ClientStore(i(), i()), export: true),
+        Bind.lazySingleton((i) => ClientStore(i(), i(), i()), export: true),
       ];
 
   @override
