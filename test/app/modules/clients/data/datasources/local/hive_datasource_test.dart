@@ -31,6 +31,12 @@ void main() async {
     expect(response, true);
   });
 
+  test('Should save a client at position 1', () async {
+    expect(box.get(1, defaultValue: null), null);
+    await cache.add(client);
+    expect(box.get(1, defaultValue: null), client);
+  });
+
   // ------------------------------------------------------ DELETE METHOD TESTS
 
   test('Should return bool when called add method', () async {
