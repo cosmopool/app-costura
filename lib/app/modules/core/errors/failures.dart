@@ -19,3 +19,11 @@ class CouldNotAddClient extends Failure {
   @override
   List<Object?> get props => [];
 }
+
+class CouldNotEditClient extends Failure {
+  @override
+  String get message => "Error trying to edit client properties";
+
+  @override
+  List<Object?> get props => [];
+}
