@@ -12,7 +12,7 @@ class Client extends Equatable {
 
   @HiveField(2, defaultValue: "")
   String phone;
-  
+
   @HiveField(3, defaultValue: 0)
   int bust;
 
@@ -44,7 +44,7 @@ class Client extends Equatable {
   int torso;
 
   Client({
-    required id,
+    id = -1,
     required this.name,
     this.phone = "",
     this.bust = 0,
@@ -61,6 +61,27 @@ class Client extends Equatable {
 
   @HiveField(0)
   int get id => _id;
+
+  /// Returns a copy of the client with new id
+  Client copyWith({
+    required int id,
+  }) {
+    return Client(
+      id: id,
+      name: name,
+      phone: phone,
+      bust: bust,
+      bustHeight: bustHeight,
+      waist: waist,
+      hip: hip,
+      shoulderWidth: shoulderWidth,
+      sleeveLenght: sleeveLenght,
+      inseam: inseam,
+      biceps: biceps,
+      pants: pants,
+      torso: torso,
+    );
+  }
 
   @override
   List<Object?> get props => [

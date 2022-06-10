@@ -115,4 +115,10 @@ void main() {
   test('TORSO property should have default value = 0', () {
     expect(clientDefaultValue.torso, 0);
   });
+
+  test('Should return a copy of the client instance with new id', () {
+    final client = Client(id: -1, name: "client");
+    final clientCopy = client.copyWith(id: 1);
+    expect(clientCopy.id != client.id, true);
+  });
 }
