@@ -28,69 +28,56 @@ class ModalPage extends StatelessWidget {
     this.backgroundColor,
     this.iconsColor,
     this.trailingIcon,
-    this.showMenu = false,
+    this.showMenu = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     final colors = Theme.of(context).colorScheme;
 
-    return SafeArea(
-      child: Column(
+    return Padding(
+      padding: EdgeInsets.only(top: height * 0.01),
+      child: Stack(
         children: [
-          SizedBox(
-            height: height * 0.01,
+          Container(
+            decoration: BoxDecoration(
+              color: backgroundColor ?? colors.primary,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              ),
+            ),
           ),
-          Expanded(
-            child: LayoutBuilder(
-              builder: (_, constraints) => Column(children: [
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: height * 0.05,
-                        horizontal: width * 0.1,
-                      ),
-                      height: constraints.maxHeight,
-                      width: constraints.maxWidth,
-                      decoration: BoxDecoration(
-                        color: backgroundColor ?? colors.primary,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: children,
-                      ),
-                    ),
-                    Positioned(
-                      left: imagePositionLeft,
-                      right: imagePositionRight,
-                      top: imagePositionTop,
-                      child: Image(
-                        width: imageWidth,
-                        height: imageHeight,
-                        image: assetImage,
-                      ),
-                    ),
-                    Positioned(
-                      top: 10,
-                      left: 10,
+          Positioned(
+            left: imagePositionLeft,
+            right: imagePositionRight,
+            top: imagePositionTop ?? 100,
+            child: Image(
+              width: imageWidth,
+              height: imageHeight,
+              image: assetImage,
+            ),
+          ),
+          Column(
+            children: [
+              showMenu
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(vertical: height * 0.02),
                       child: ModalTitleBar(
                         title: title,
                         iconsColor: iconsColor,
                         trailingIcon: trailingIcon,
                       ),
-                    ),
-                  ],
+                    )
+                  : Container(),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: children,
                 ),
-              ]),
-            ),
+              ),
+            ],
           ),
         ],
       ),
