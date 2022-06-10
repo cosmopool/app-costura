@@ -5,6 +5,7 @@ import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_us
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/infra/repositories/client_repository.dart';
 import 'package:app_costura/app/modules/clients/ui/pages/client_add_page.dart';
+import 'package:app_costura/app/modules/clients/ui/pages/client_edit_page.dart';
 import 'package:app_costura/app/modules/clients/ui/pages/client_info_page.dart';
 import 'package:app_costura/app/modules/clients/ui/pages/client_search_page.dart';
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
@@ -33,5 +34,6 @@ class ClientsModule extends Module {
         ChildRoute('/', child: (context, args) => const ClientSearchPage(), transition: TransitionType.fadeIn),
         ChildRoute('/info', child: (context, args) => ClientInfoPage(client: args.data), transition: TransitionType.downToUp),
         ChildRoute('/add', child: (context, args) => const ClientAddPage(), transition: TransitionType.downToUp),
+        ChildRoute('/edit', child: (context, args) => ClientEditPage(client: args.data), transition: TransitionType.rightToLeft),
       ];
 }

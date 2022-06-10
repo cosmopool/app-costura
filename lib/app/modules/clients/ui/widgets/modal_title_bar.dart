@@ -40,14 +40,10 @@ class ModalTitleBar extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        (trailingIcon != null) ? SizedBox(
           width: width * 0.1,
-          child: trailingIcon ?? IconButton(
-            color: iconsColor ?? colors.secondaryContainer,
-            icon: const Icon(Icons.edit),
-            onPressed: () => print('go to edit contact pls'),
-          ),
-        ),
+          child: trailingIcon,
+        ) : Container(),
       ],
     );
   }

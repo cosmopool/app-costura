@@ -3,6 +3,7 @@ import 'package:app_costura/app/modules/clients/ui/widgets/body_measurement.dart
 import 'package:app_costura/app/modules/clients/ui/widgets/client_contact_info.dart';
 import 'package:app_costura/app/modules/clients/ui/widgets/modal_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ClientInfoPage extends StatelessWidget {
   final Client client;
@@ -23,6 +24,11 @@ class ClientInfoPage extends StatelessWidget {
           imagePositionLeft: width / 2.2,
           imageHeight: height * 0.8,
           imagePositionTop: (height * 0.2) / 2,
+          trailingIcon: IconButton(
+            color: colors.secondaryContainer,
+            icon: const Icon(Icons.edit),
+            onPressed: () => Modular.to.pushNamed('./edit', arguments: client),
+          ),
           children: [
             Expanded(
               child: Padding(
