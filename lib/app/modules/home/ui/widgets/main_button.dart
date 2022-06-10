@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class MainButton extends StatefulWidget {
   final String title;
   final Color backgroundColor;
+  final Color? secondBackgroundColor;
   final double? heightFactor;
   final double? widthFactor;
   final double? wrapTextFactor;
@@ -19,6 +20,7 @@ class MainButton extends StatefulWidget {
     required this.textStyle,
     required this.iconAsset,
     required this.iconColor,
+    this.secondBackgroundColor,
     this.textColor,
     this.heightFactor,
     this.widthFactor,
@@ -52,13 +54,22 @@ class _MainButtonState extends State<MainButton> {
         alignment: AlignmentDirectional.center,
         children: <Widget>[
           Positioned(
+            top: -10,
+            left: -10,
+            child: Container(
+              height: 100,
+              width: 100,
+              color: widget.secondBackgroundColor,
+            ),
+          ),
+          Positioned(
             child: Container(
               height: buttonHeight,
               width: buttonWidth,
               decoration: BoxDecoration(
                 color: widget.backgroundColor,
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(0),
+                  topLeft: Radius.circular(40),
                 ),
               ),
               child: Stack(

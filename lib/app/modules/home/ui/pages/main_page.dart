@@ -39,6 +39,7 @@ class HomeMainPage extends StatelessWidget {
                 MainButton(
                   title: "Orçamento",
                   backgroundColor: colors.primary,
+                  secondBackgroundColor: colors.onPrimaryContainer,
                   textStyle: textStyle.headlineMedium!,
                   iconAsset: 'assets/images/quote.png',
                   iconColor: const Color(0xff4F378B),
