@@ -13,26 +13,24 @@ class HomeMainPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: colors.secondaryContainer,
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (_, constraints) {
-            return Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MainButton(
-                  title: "Selecione uma atividade",
-                  heightFactor: 0.45,
-                  backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-                  constraints: constraints,
-                  textStyle: textStyle.headlineMedium!,
-                  textColor: colors.primary,
-                  wrapTextFactor: 0.7,
-                  iconAsset: 'assets/images/machine.png',
-                  iconColor: colors.primary,
+                Expanded(
+                  child: MainButton(
+                    title: "Selecione uma atividade",
+                    heightFactor: 0.45,
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+                    textStyle: textStyle.headlineMedium!,
+                    textColor: colors.primary,
+                    wrapTextFactor: 0.7,
+                    iconAsset: 'assets/images/machine.png',
+                    iconColor: colors.primary,
+                  ),
                 ),
                 MainButton(
                   title: "Clientes",
                   backgroundColor: colors.onPrimaryContainer,
-                  constraints: constraints,
                   textStyle: textStyle.headlineMedium!,
                   iconAsset: 'assets/images/contacts.png',
                   iconColor: colors.primary,
@@ -41,16 +39,13 @@ class HomeMainPage extends StatelessWidget {
                 MainButton(
                   title: "Orçamento",
                   backgroundColor: colors.primary,
-                  constraints: constraints,
                   textStyle: textStyle.headlineMedium!,
                   iconAsset: 'assets/images/quote.png',
                   iconColor: const Color(0xff4F378B),
                   onTap: () => print("navidate to quote"),
                 ),
               ],
-            );
-          },
-        ),
+            ),
       ),
     );
   }

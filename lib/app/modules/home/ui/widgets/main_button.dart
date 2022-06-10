@@ -11,7 +11,6 @@ class MainButton extends StatefulWidget {
   final String iconAsset;
   final Color iconColor;
   final Function? onTap;
-  final BoxConstraints constraints;
 
   const MainButton({
     Key? key,
@@ -20,7 +19,6 @@ class MainButton extends StatefulWidget {
     required this.textStyle,
     required this.iconAsset,
     required this.iconColor,
-    required this.constraints,
     this.textColor,
     this.heightFactor,
     this.widthFactor,
@@ -38,8 +36,8 @@ class _MainButtonState extends State<MainButton> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
-    final buttonHeight = widget.constraints.maxHeight * (widget.heightFactor ?? 0.25);
-    final buttonWidth = widget.constraints.maxWidth * (widget.widthFactor ?? 1);
+    final buttonHeight = height * (widget.heightFactor ?? 0.25);
+    final buttonWidth = width * (widget.widthFactor ?? 1);
     final iconHeight = height * 0.2;
     bool selected = false;
 
