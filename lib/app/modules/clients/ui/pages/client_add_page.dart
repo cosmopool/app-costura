@@ -20,7 +20,7 @@ class _ClientAddPageState extends State<ClientAddPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final colors = Theme.of(context).colorScheme;
-    Client client = Client(id: 10123, name: "");
+    Client client = Client(name: "");
     final store = Modular.get<ClientStore>();
 
     return Scaffold(
