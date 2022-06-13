@@ -27,3 +27,11 @@ class CouldNotEditClient extends Failure {
   @override
   List<Object?> get props => [];
 }
+
+class CouldNotDeleteClient extends Failure {
+  @override
+  String get message => "Error trying to delete client properties";
+
+  @override
+  List<Object?> get props => [];
+}

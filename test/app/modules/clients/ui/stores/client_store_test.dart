@@ -1,5 +1,6 @@
 import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/add_client_usecase.dart';
+import 'package:app_costura/app/modules/clients/domain/usecases/delete_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
@@ -15,16 +16,19 @@ class MockAddClientsUsecase extends Mock implements AddClientUsecase {}
 
 class MockUpdateClientsUsecase extends Mock implements UpdateClientUsecase {}
 
+class MockDeleteClientsUsecase extends Mock implements DeleteClientUsecase {}
+
 void main() async {
   const clientName = "Test Client";
   final client = Client(id: 1, name: clientName);
   final fetchUsecase = MockFetchClientsUsecase();
   final addUsecase = MockAddClientsUsecase();
   final updateUsecase = MockUpdateClientsUsecase();
+  final deleteUsecase = MockDeleteClientsUsecase();
   late ClientStore clientStore;
 
   setUp(() async {
-    clientStore = ClientStore(fetchUsecase, addUsecase, updateUsecase);
+    clientStore = ClientStore(fetchUsecase, addUsecase, updateUsecase, deleteUsecase);
     registerFallbackValue(Client(id: 66, name: "Stub"));
   });
 
@@ -50,6 +54,8 @@ void main() async {
         ClientViewModel(clients: listOfClients, filter: "ai"));
   });
 
+  // ------------------------------------------------------ ADD METHOD TESTS
+
   test('Should add a new client to clientList', () async {
     // arrange
     when(fetchUsecase.call).thenAnswer((_) async => listOfClients);
@@ -62,4 +68,15 @@ void main() async {
     await clientStore.add(newClient);
     expect(clientStore.state, ClientViewModel(clients: newClientList));
   });
+
+  // ------------------------------------------------------ DELETE METHOD TESTS
+
+  test('Should call delete usecase', () async {
+    // arrange
+    when(() => deleteUsecase.call(any())).thenAnswer((_) async => true);
+    clientStore.delete(client);
+    verify(() => deleteUsecase(client)).called(2);
+
+  });
+
 }

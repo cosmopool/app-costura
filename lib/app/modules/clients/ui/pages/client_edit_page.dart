@@ -1,5 +1,6 @@
 import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:app_costura/app/modules/clients/ui/stores/clients_store.dart';
+import 'package:app_costura/app/modules/clients/ui/widgets/confirmation_dialog.dart';
 import 'package:app_costura/app/modules/clients/ui/widgets/form_input.dart';
 import 'package:app_costura/app/modules/clients/ui/widgets/modal_page.dart';
 import 'package:flutter/material.dart';
@@ -57,90 +58,115 @@ class _ClientEditPageState extends State<ClientEditPage> {
                       vertical: height * 0.01,
                       horizontal: width * 0.05,
                     ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(children: [
-                        FormInputField(
-                          label: 'Nome do cliente',
-                          type: TextInputType.text,
-                          initialValue: widget.client.name,
-                          onSaved: (value) => widget.client.name = value,
-                          shouldValidate: true,
-                        ),
-                        FormInputField(
-                          label: 'Telefone',
-                          type: TextInputType.phone,
-                          initialValue: widget.client.phone,
-                          onSaved: (value) => widget.client.phone = value.toString(),
-                          shouldValidate: true,
-                        ),
-                        Row(children: [
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Busto',
-                              initialValue: widget.client.bust.toString(),
-                              onSaved: (value) =>
-                                  widget.client.bust = parseStringToInt(value),
+                    child: Column(
+                      children: [
+                        Form(
+                          key: _formKey,
+                          child: Column(children: [
+                            FormInputField(
+                              label: 'Nome do cliente',
+                              type: TextInputType.text,
+                              initialValue: widget.client.name,
+                              onSaved: (value) => widget.client.name = value,
+                              shouldValidate: true,
                             ),
-                          ),
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Altura do Busto',
-                              initialValue: widget.client.bustHeight.toString(),
+                            FormInputField(
+                              label: 'Telefone',
+                              type: TextInputType.phone,
+                              initialValue: widget.client.phone,
                               onSaved: (value) =>
-                                  widget.client.bustHeight = parseStringToInt(value),
+                                  widget.client.phone = value.toString(),
+                              shouldValidate: true,
                             ),
-                          ),
-                        ]),
-                        Row(children: [
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Quadril',
-                              initialValue: widget.client.waist.toString(),
-                              onSaved: (value) =>
-                                  widget.client.hip = parseStringToInt(value),
-                            ),
-                          ),
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Largura do braço',
-                              initialValue: widget.client.biceps.toString(),
-                              onSaved: (value) =>
-                                  widget.client.biceps = parseStringToInt(value),
-                            ),
-                          ),
-                        ]),
-                        Row(children: [
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Costas',
-                              initialValue: widget.client.shoulderWidth.toString(),
-                              onSaved: (value) => widget.client.shoulderWidth =
+                            Row(children: [
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Busto',
+                                  initialValue: widget.client.bust.toString(),
+                                  onSaved: (value) => widget.client.bust =
+                                      parseStringToInt(value),
+                                ),
+                              ),
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Altura do Busto',
+                                  initialValue:
+                                      widget.client.bustHeight.toString(),
+                                  onSaved: (value) => widget.client.bustHeight =
+                                      parseStringToInt(value),
+                                ),
+                              ),
+                            ]),
+                            Row(children: [
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Quadril',
+                                  initialValue: widget.client.waist.toString(),
+                                  onSaved: (value) => widget.client.hip =
+                                      parseStringToInt(value),
+                                ),
+                              ),
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Largura do braço',
+                                  initialValue: widget.client.biceps.toString(),
+                                  onSaved: (value) => widget.client.biceps =
+                                      parseStringToInt(value),
+                                ),
+                              ),
+                            ]),
+                            Row(children: [
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Costas',
+                                  initialValue:
+                                      widget.client.shoulderWidth.toString(),
+                                  onSaved: (value) => widget.client
+                                      .shoulderWidth = parseStringToInt(value),
+                                ),
+                              ),
+                              Expanded(
+                                child: FormInputField(
+                                  label: 'Cintura',
+                                  initialValue: widget.client.waist.toString(),
+                                  onSaved: (value) => widget.client.waist =
+                                      parseStringToInt(value),
+                                ),
+                              ),
+                            ]),
+                            FormInputField(
+                              label: 'Comprimento da manga',
+                              initialValue:
+                                  widget.client.sleeveLenght.toString(),
+                              onSaved: (value) => widget.client.sleeveLenght =
                                   parseStringToInt(value),
                             ),
-                          ),
-                          Expanded(
-                            child: FormInputField(
-                              label: 'Cintura',
-                              initialValue: widget.client.waist.toString(),
+                            FormInputField(
+                              label: 'Comprimento do corpo',
+                              initialValue: widget.client.torso.toString(),
                               onSaved: (value) =>
-                                  widget.client.waist = parseStringToInt(value),
+                                  widget.client.torso = parseStringToInt(value),
                             ),
+                          ]),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: colors.error,
+                            onPrimary: colors.onError,
                           ),
-                        ]),
-                        FormInputField(
-                          label: 'Comprimento da manga',
-                          initialValue: widget.client.sleeveLenght.toString(),
-                          onSaved: (value) =>
-                              widget.client.sleeveLenght = parseStringToInt(value),
+                          onPressed: () => confirmationDialog(
+                            context,
+                            () {
+                              store.delete(widget.client);
+                              Modular.to.popUntil(ModalRoute.withName("/clients/"));
+                            },
+                            () => Modular.to.pop(),
+                            "Deletar contato",
+                            "Tem certeza que deseja deletar esse contato?",
+                          ),
+                          child: const Text('Deletar'),
                         ),
-                        FormInputField(
-                          label: 'Comprimento do corpo',
-                          initialValue: widget.client.torso.toString(),
-                          onSaved: (value) =>
-                              widget.client.torso = parseStringToInt(value),
-                        ),
-                      ]),
+                      ],
                     ),
                   ),
                 ],

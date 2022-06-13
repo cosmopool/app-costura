@@ -1,5 +1,6 @@
 import 'package:app_costura/app/modules/clients/domain/entities/client_entity.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/add_client_usecase.dart';
+import 'package:app_costura/app/modules/clients/domain/usecases/delete_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/fetch_clients_usecase.dart';
 import 'package:app_costura/app/modules/clients/domain/usecases/update_client_usecase.dart';
 import 'package:app_costura/app/modules/clients/ui/viewmodel/client_viewmodel.dart';
@@ -11,11 +12,13 @@ class ClientStore extends NotifierStore<Failure, ClientViewModel> {
   final FetchClientsUsecase _fetchAllUsecase;
   final AddClientUsecase _addUsecase;
   final UpdateClientUsecase _updateUsecase;
+  final DeleteClientUsecase _deleteUsecase;
 
   ClientStore(
     this._fetchAllUsecase,
     this._addUsecase,
     this._updateUsecase,
+    this._deleteUsecase,
   ) : super(ClientViewModel());
 
   /// Filter the client list by [clientName]
@@ -72,6 +75,25 @@ class ClientStore extends NotifierStore<Failure, ClientViewModel> {
       }
     } catch (e) {
       setError(CouldNotEditClient());
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  /// Deletes a [client] properties
+  Future<void> delete(Client client) async {
+  print("---------------------  deleting client: ${client.name}");
+    try {
+      setLoading(true);
+      final response = await _deleteUsecase(client);
+      if (response == true) {
+        final clientList = await _fetchAllUsecase();
+        update(state.copyWith(clients: clientList));
+      } else {
+        setError(CouldNotDeleteClient());
+      }
+    } catch (e) {
+      setError(CouldNotDeleteClient());
     } finally {
       setLoading(false);
     }
