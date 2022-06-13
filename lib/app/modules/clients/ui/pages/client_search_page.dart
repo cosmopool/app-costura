@@ -5,16 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-class ClientSearchPage extends StatelessWidget {
+class ClientSearchPage extends StatefulWidget {
   const ClientSearchPage({Key? key}) : super(key: key);
+
+  @override
+  State<ClientSearchPage> createState() => _ClientSearchPageState();
+}
+
+class _ClientSearchPageState extends State<ClientSearchPage> {
+  final store = Modular.get<ClientStore>();
+
+  @override
+  void initState() {
+    super.initState();
+    store.fetchAll();
+  }
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final colors = Theme.of(context).colorScheme;
-    final store = Modular.get<ClientStore>();
-    store.fetchAll();
 
     return Scaffold(
       backgroundColor: colors.secondaryContainer,

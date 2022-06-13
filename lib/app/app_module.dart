@@ -7,11 +7,6 @@ class AppModule extends Module {
   List<Bind> get binds => [];
 
   @override
-  List<Module> get imports => [
-        ClientsModule(),
-      ];
-
-  @override
   List<ModularRoute> get routes => [
         ModuleRoute("/", module: HomeModule()),
         ModuleRoute("/clients", module: ClientsModule()),

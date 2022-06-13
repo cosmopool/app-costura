@@ -17,16 +17,16 @@ class ClientsModule extends Module {
   List<Bind> get binds => [
         // Here it goes all dependency injection
         // datasources
-        Bind.lazySingleton((i) => HiveDatasource(Hive.box("clients")), export: true),
+        Bind.lazySingleton((i) => HiveDatasource(Hive.box("clients"))),
         // repositories
-        Bind.lazySingleton((i) => ClientRepository(i()), export: true),
+        Bind.lazySingleton((i) => ClientRepository(i())),
         // usecases
-        Bind.lazySingleton((i) => AddClientUsecase(i()), export: true),
-        Bind.lazySingleton((i) => DeleteClientUsecase(i()), export: true),
-        Bind.lazySingleton((i) => FetchClientsUsecase(i()), export: true),
-        Bind.lazySingleton((i) => UpdateClientUsecase(i()), export: true),
+        Bind.lazySingleton((i) => AddClientUsecase(i())),
+        Bind.lazySingleton((i) => DeleteClientUsecase(i())),
+        Bind.lazySingleton((i) => FetchClientsUsecase(i())),
+        Bind.lazySingleton((i) => UpdateClientUsecase(i())),
         // stores
-        Bind.lazySingleton((i) => ClientStore(i(), i(), i()), export: true),
+        Bind.lazySingleton((i) => ClientStore(i(), i(), i())),
       ];
 
   @override
