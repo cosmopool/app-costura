@@ -17,14 +17,12 @@ class ClientContactWidget extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final width = MediaQuery.of(context).size.width;
 
-    return GestureDetector(
-      // TODO: make sound when tapped like other buttons
-      onTap: () => onTap(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: width * (0.7),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: width * (0.7),
+          child: TextButton(
             child: Text(
               client.name,
               style: textTheme.headlineMedium?.copyWith(
@@ -32,13 +30,14 @@ class ClientContactWidget extends StatelessWidget {
                 decoration: TextDecoration.underline,
               ),
             ),
+            onPressed: () => onTap(),
           ),
-          Icon(
-            Icons.navigate_next,
-            color: colors.secondaryContainer,
-          ),
-        ],
-      ),
+        ),
+        Icon(
+          Icons.navigate_next,
+          color: colors.secondaryContainer,
+        ),
+      ],
     );
   }
 }
