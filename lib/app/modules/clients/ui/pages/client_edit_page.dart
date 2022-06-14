@@ -42,6 +42,7 @@ class _ClientEditPageState extends State<ClientEditPage> {
                   currentState.save();
                   await store.edit(widget.client);
                   Modular.to.pop();
+                  Modular.to.popAndPushNamed("/clients/info", arguments: widget.client);
                 }
               }
             },
