@@ -35,9 +35,9 @@ class ClientInfoPage extends StatelessWidget {
                 padding: const EdgeInsets.all(40),
                 child: ListView(
                   children: [
-                    // TODO: fix text for low dpi devices
                     BodyMeasurement(client: client),
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 40),
+                    Divider(color: colors.secondaryContainer),
                     ClientContactInfo(client: client),
                   ],
                 ),

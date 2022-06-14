@@ -14,13 +14,26 @@ class BodyMeasurementRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final colors = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Flexible(flex: 2, child: TextLine(text: "$size cm", lineLenghtFactor: 0.15, textAlign: TextAlign.end)),
+        Flexible(
+            flex: 1, child: TextLine(text: "$size", textAlign: TextAlign.end)),
+        Flexible(flex: 1, child: SizedBox(width: width * 0.01)),
+        Flexible(
+          flex: 1,
+          child: Text(
+            "cm",
+            style: textTheme.bodyLarge?.copyWith(
+              color: colors.secondaryContainer,
+            ),
+          ),
+        ),
         Flexible(flex: 1, child: SizedBox(width: width * 0.05)),
-        Flexible(flex: 5, child: TextLine(text: measurement, lineLenghtFactor: 0.5)),
+        Flexible(flex: 5, child: TextLine(text: measurement)),
       ],
     );
   }
